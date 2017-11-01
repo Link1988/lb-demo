@@ -1,0 +1,52 @@
+{
+  "name": "Student",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "major": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "courses": {
+      "type": "hasAndBelongsToMany",
+      "model": "Course",
+      "foreignKey": "course"
+    },
+    "registrations": {
+      "type": "belongsTo",
+      "model": "Registrations",
+      "foreignKey": "student"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY",
+      "property": "saveCourse"
+    }
+  ],
+  "methods": {}
+}
